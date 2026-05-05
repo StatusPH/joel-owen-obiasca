@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joel Owen Obiasca - Professional Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+
+      /* Core Theme Variables (Will be replaced by Agent) */
+      --accent: #3b82f6;
+
+      --accent-muted: rgba(59, 130, 246, 0.1);
+
+      /* Base Colors */
+      --bg-color: #f8fafc;
+      --bg-secondary: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+
+      /* Typography */
+      --font-heading: 'DM Serif Display',
+      serif;
+      --font-body: 'DM Sans',
+      sans-serif;
+      --radius: 4px;
+    }
+
+    /* Print disabled for website */
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+
+    /* Resets */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-wrap: break-word;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-heading);
+      font-weight: normal;
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    header {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--text-main);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn-view-cv {
+      background-color: var(--accent);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: var(--radius);
+      font-weight: 500;
+    }
+
+    .btn-view-cv:hover {
+      opacity: 0.9;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      margin-bottom: 4px;
+      border-radius: 2px;
+    }
+
+    .hamburger span:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background-color: var(--accent-muted);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin: 0 auto 24px auto;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--text-light);
+    }
+
+    .status-badge[data-status*="open" i] .status-indicator,
+    .status-badge[data-status*="available" i] .status-indicator,
+    .status-badge[data-status*="looking" i] .status-indicator {
+      background-color: #22c55e;
+      box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+      animation: pulse-glow 2s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .hero-meta-item svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-image img {
+      border-radius: 2px;
+      width: 200px;
+      height: 200px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 6px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    /* Standard Sections */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-inner {
+      background-color: var(--bg-secondary);
+      padding: 64px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      font-size: 2.25rem;
+      margin-bottom: 40px;
+      color: var(--text-main);
+    }
+
+    /* About */
+    .about-text {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      white-space: pre-wrap;
+      text-align: justify;
+      word-break: break-word;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill-pill {
+      background-color: var(--bg-color);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-weight: 500;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    /* Timeline (Experience / Education) */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .timeline-meta {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .timeline-title {
+      font-size: 1.35rem;
+      font-family: var(--font-heading);
+      margin: 0;
+      color: var(--text-main);
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .timeline-subtitle {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--text-main);
+      color: #fff;
+      padding: 64px 0;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      transition: color 0.15s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    .social-links svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .footer-meta {
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 860px) {
+      .hero-image {
+        max-width: 100%;
+        order: -1;
+      }
+
+      .timeline-item {
+        gap: 12px;
+      }
+
+      .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .timeline-meta {
+        padding-top: 0;
+        margin-bottom: 0;
+        color: var(--accent);
+        white-space: normal;
+      }
+
+      .about-text {
+        text-align: left;
+      }
+
+      .section-inner {
+        padding: 40px 24px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 24px;
+        border-bottom: 1px solid var(--border-color);
+        gap: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav-inner">
+      <div class="logo">Joel Owen Obiasca</div>
+      <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-menu">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="./cv.html" class="btn-view-cv">View CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-image">
+        <img src="./profile.jpg" alt="Joel Owen Obiasca Profile Photo">
+      </div>
+      <div class="hero-content">
+        <div class="status-badge" data-status="open for work">
+          <div class="status-indicator"></div>
+          open for work
+        </div>
+        <h1>Joel Owen Obiasca</h1>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+            Plaridel, Bulacan
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+            owenobiasca@gmail.com
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+            09452960019
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-header">Professional Summary</h2>
+        <div class="about-text">I am an analytical Mechanical Engineering graduate with an intense, growing obsession for sales. While I am at the beginning of my formal sales career, I am dedicating my energy to mastering persuasion, relationship building, and revenue generation because I know that mastering sales is the ultimate key to business success. I bring a unique advantage: an engineering mindset. I use my background in machine design and AI orchestration to systematically break down problems, understand complex products, and optimize workflows. I am looking for a high-impact, entry-level sales role where my hunger to learn, strict work ethic, and raw drive will be put to the ultimate test.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="bg-shade">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-header">Background & Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">OJT</h3>
+              <div class="timeline-meta">2023 – 2024</div>
+            </div>
+            <div class="timeline-subtitle">People’s Energy Services, Inc.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Academic Projects</h3>
+              <div class="timeline-meta">2021 – 2025</div>
+            </div>
+            <div class="timeline-subtitle">Thesis & CAD Design</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Freelance Fusion 360 Machine Designer</h3>
+              <div class="timeline-meta">2023 – Present</div>
+            </div>
+            <div class="timeline-subtitle">Freelance</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Freelance Agent Orchestrator</h3>
+              <div class="timeline-meta">2026 – Present</div>
+            </div>
+            <div class="timeline-subtitle">Freelance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-header">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-title">Bachelor of Science in Mechanical Engineering</h3>
+              <div class="timeline-meta">2019 – 2025</div>
+            </div>
+            <div class="timeline-subtitle">University Of Northeastern Philippines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-header">Skills & Expertise</h2>
+        
+        <h3 class="timeline-title" style="margin-bottom: 16px; font-size: 1.25rem;">Technical Skills</h3>
+        <div class="skills-grid" style="margin-bottom: 32px;">
+          <span class="skill-pill">Machine Design</span>
+          <span class="skill-pill">Agent Orchestrator</span>
+          <span class="skill-pill">Cad Operator</span>
+          <span class="skill-pill">Data Encoding</span>
+        </div>
+
+        <h3 class="timeline-title" style="margin-bottom: 16px; font-size: 1.25rem;">Soft Skills</h3>
+        <div class="skills-grid" style="margin-bottom: 32px;">
+          <span class="skill-pill">Sales Psychology (Self-Study)</span>
+          <span class="skill-pill">Active Listening & Persuasion</span>
+          <span class="skill-pill">Coachable & High-Drive Learner</span>
+          <span class="skill-pill">Analytical Problem Solving</span>
+        </div>
+
+        <h3 class="timeline-title" style="margin-bottom: 16px; font-size: 1.25rem;">Tools & Software</h3>
+        <div class="skills-grid">
+          <span class="skill-pill">Fusion 360</span>
+          <span class="skill-pill">MS Office</span>
+          <span class="skill-pill">Google Stacks</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="pre-employment" class="bg-shade">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-header">Pre-employment Readiness</h2>
+        <div class="skills-grid">
+          <span class="skill-pill">SSS Number</span>
+          <span class="skill-pill">TIN Number</span>
+          <span class="skill-pill">PhilHealth ID</span>
+          <span class="skill-pill">Pag-IBIG MID</span>
+          <span class="skill-pill">NBI Clearance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">StatusPH</div>
+      <div class="social-links">
+      </div>
+      <div class="footer-meta">
+        <strong>Stand out.</strong> Because every professional deserves their own premium website.<br>
+        Built with StatusPH.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+      document.getElementById('nav-menu').classList.toggle('active');
+    });
+  </script>
+</body>
+
+</html>

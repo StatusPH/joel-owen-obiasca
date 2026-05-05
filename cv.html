@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joel Owen Obiasca - Professional CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --cv-scale: 0.8;
+
+      /* Theme Variables mapped from Website */
+      --accent: #3b82f6;
+
+      --accent-muted: rgba(59, 130, 246, 0.1);
+      --bg-color: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #334155;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      --font-heading: 'DM Serif Display',
+      serif;
+      --font-body: 'DM Sans',
+      sans-serif;
+
+      /* Layout Density Defaults (Tier 1) */
+      --base-font-size: 14px;
+      --section-gap: 28px;
+      --entry-gap: 18px;
+      --page-v-padding: 15mm;
+      --page-h-padding: 20mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #f1f5f9;
+      /* Outer browser background */
+      color: var(--text-main);
+      line-height: 1.5;
+      font-size: var(--base-font-size);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Print Controls (Screen Only) */
+    .print-controls {
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      background: #0f172a;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .print-controls button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .print-controls button:hover {
+      transform: scale(1.05);
+    }
+
+    .print-controls p {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      margin-top: 8px;
+    }
+
+    /* CV Canvas - Fixed A4 Structure */
+    .cv-page {
+      background: var(--bg-color);
+      width: calc(210mm / var(--cv-scale, 1));
+      min-height: calc(297mm / var(--cv-scale, 1));
+      margin: 40px auto;
+      padding: calc(var(--page-v-padding) / var(--cv-scale, 1)) calc(var(--page-h-padding) / var(--cv-scale, 1));
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      transform: scale(var(--cv-scale, 1));
+      transform-origin: top center;
+      margin-bottom: calc(40px - (297mm / var(--cv-scale, 1) * (1 - var(--cv-scale, 1))));
+    }
+
+    /* Header */
+    .cv-header {
+      display: flex;
+      gap: 32px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .profile-photo {
+      width: 130px;
+      height: 130px;
+      flex-shrink: 0;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .header-content h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .header-title {
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Sections */
+    .cv-section {
+      margin-bottom: var(--section-gap);
+    }
+
+    .cv-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Timeline Entries */
+    .entry {
+      margin-bottom: var(--entry-gap);
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .entry-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .entry-date {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .entry-subtitle {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    /* Skills */
+    .skills-block {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .skills-block strong {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      min-width: 140px;
+    }
+
+    /* Pre-employment */
+    .docs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .doc-pill {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Footer & QR Code */
+    .cv-footer {
+      position: absolute;
+      bottom: calc(var(--page-v-padding) / var(--cv-scale, 1));
+      left: calc(var(--page-h-padding) / var(--cv-scale, 1));
+      right: calc(var(--page-h-padding) / var(--cv-scale, 1));
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      color: var(--text-light);
+      font-size: 0.8rem;
+    }
+
+    .qr-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      text-align: right;
+    }
+
+    .qr-code {
+      width: 60px;
+      height: 60px;
+      background: white;
+      padding: 2px;
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .qr-code img {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Responsive adjustments for SCREEN viewing */
+    @media (max-width: 210mm) {
+      body {
+        background-color: #f1f5f9;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+        height: auto;
+      }
+
+      .cv-page {
+        width: calc(210mm / var(--cv-scale, 1));
+        margin: 0 auto;
+        transform: scale(calc((100vw / 210mm) * var(--cv-scale, 1)));
+        transform-origin: top left;
+        box-shadow: none;
+      }
+
+      .print-controls {
+        position: relative;
+        z-index: 1001;
+      }
+
+      /* Adjust footer positioning for scaled view */
+      .cv-footer {
+        bottom: calc(15mm / var(--cv-scale, 1));
+      }
+    }
+
+    /* PRINT SPECIFIC RULES - THE FIX */
+    @media print {
+
+      /* Reset for high-fidelity print */
+      body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .print-controls {
+        display: none !important;
+      }
+
+      /* Rule 5 & 1: Forced Single Page & Compression Logic */
+      :root {
+        --base-font-size: 10.5pt;
+        /* Rule 5: Reduce font-size */
+        --section-gap: 12pt;
+        /* Rule 5: Reduce section margins */
+        --entry-gap: 8pt;
+        --page-v-padding: 10mm;
+        --page-h-padding: 15mm;
+      }
+
+      .cv-page {
+        margin: 0 !important;
+        padding: var(--page-v-padding) var(--page-h-padding) 40mm var(--page-h-padding) !important;
+        /* 40mm bottom padding reserves space for locked footer */
+        width: 210mm !important;
+        height: 297mm !important;
+        /* Rule 1 & 5: One page always */
+        transform: none !important;
+        box-shadow: none !important;
+        position: relative !important;
+        overflow: hidden !important;
+        /* Rule 1: Never overflow to page 2 */
+        display: flex !important;
+        flex-direction: column !important;
+        background: white !important;
+      }
+
+      /* Rule 5: Reduce line-height first */
+      * {
+        line-height: 1.15 !important;
+      }
+
+      /* Rule 5: Font Size Reductions */
+      body,
+      .summary-text,
+      .entry-subtitle,
+      .skills-block span,
+      .doc-pill {
+        font-size: 10pt !important;
+      }
+
+      .cv-header h1 {
+        font-size: 24pt !important;
+      }
+
+      .header-title {
+        font-size: 11pt !important;
+        margin-bottom: 8pt !important;
+      }
+
+      .cv-section-title {
+        font-size: 12pt !important;
+        margin-bottom: 8pt !important;
+        padding-bottom: 4pt !important;
+      }
+
+      /* Rule 5: Margin Reductions */
+      .cv-section {
+        margin-bottom: var(--section-gap) !important;
+      }
+
+      .cv-header {
+        margin-bottom: 12pt !important;
+        padding-bottom: 10pt !important;
+        gap: 20pt !important;
+      }
+
+      .profile-photo {
+        width: 100pt !important;
+        height: 100pt !important;
+      }
+
+      .entry {
+        margin-bottom: var(--entry-gap) !important;
+      }
+
+      .contact-grid {
+        gap: 12pt !important;
+      }
+
+      /* Rule 2 & 4: Footer Lock & QR Code Position */
+      .cv-footer {
+        position: fixed !important;
+        /* Rule 2: Locked to bottom */
+        bottom: 15mm !important;
+        left: 15mm !important;
+        right: 15mm !important;
+        width: calc(210mm - 30mm) !important;
+        border-top: 1px solid var(--border-color) !important;
+        padding-top: 10pt !important;
+        background: white !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-end !important;
+        z-index: 100 !important;
+      }
+
+      .qr-container {
+        display: flex !important;
+        align-items: flex-end !important;
+        justify-content: flex-end !important;
+        text-align: right !important;
+      }
+
+      .qr-code {
+        width: 50pt !important;
+        height: 50pt !important;
+      }
+
+      /* Prevent item fragmentation */
+      .entry,
+      .cv-section,
+      .skills-block {
+        break-inside: avoid !important;
+      }
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="print-controls">
+    <button onclick="window.print()">Download / Print as PDF</button>
+    <p>Premium High-Fidelity Resume • Best saved as PDF via Chrome or Safari</p>
+    <p style="margin-top: 12px;"><a href="./index.html" style="color: var(--accent); text-decoration: underline;">Return to Website</a></p>
+  </div>
+
+  <div class="cv-page">
+    <header class="cv-header">
+      <div class="profile-photo">
+        <img src="./profile.jpg" alt="Joel Owen Obiasca">
+      </div>
+      <div class="header-content">
+        <h1>Joel Owen Obiasca</h1>
+        <div class="header-title">open for work</div>
+        <div class="contact-grid">
+          <span>📍 Plaridel, Bulacan</span>
+          <span>✉️ owenobiasca@gmail.com</span>
+          <span>📞 09452960019</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Professional Summary</h2>
+      <div class="summary-text">Analytical Mechanical Engineering graduate with an intense obsession for sales and revenue generation. Leveraging a technical background in AI and machine design to systematically master persuasion, understand complex products, and optimize business workflows. Highly driven and coachable, seeking an entry-level sales role to prove my work ethic and accelerate business growth.</div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Background & Experience</h2>
+      <div class="timeline">
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">OJT</div>
+            <div class="entry-date">2023 – 2024</div>
+          </div>
+          <div class="entry-subtitle">People’s Energy Services, Inc.</div>
+        </div>
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Academic Projects</div>
+            <div class="entry-date">2021 – 2025</div>
+          </div>
+          <div class="entry-subtitle">Thesis & CAD Design</div>
+        </div>
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Freelance Fusion 360 Machine Designer</div>
+            <div class="entry-date">2023 – Present</div>
+          </div>
+          <div class="entry-subtitle">Freelance</div>
+        </div>
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Freelance Agent Orchestrator</div>
+            <div class="entry-date">2026 – Present</div>
+          </div>
+          <div class="entry-subtitle">Freelance</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Education</h2>
+      <div class="timeline">
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Bachelor of Science in Mechanical Engineering</div>
+            <div class="entry-date">2019 – 2025</div>
+          </div>
+          <div class="entry-subtitle">University Of Northeastern Philippines</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Core Competencies</h2>
+      <div class="skills-list">
+        <div class="skills-block">
+          <strong>Technical Skills:</strong>
+          <span>Machine Design, Agent Orchestrator, Cad Operator, Data Encoding</span>
+        </div>
+
+        <div class="skills-block">
+          <strong>Soft Skills:</strong>
+          <span>Sales Psychology (Self-Study), Active Listening & Persuasion, Coachable & High-Drive Learner, Analytical Problem Solving</span>
+        </div>
+
+        <div class="skills-block">
+          <strong>Tools & Software:</strong>
+          <span>Fusion 360, MS Office, Google Stacks</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2 class="cv-section-title">Pre-employment Readiness</h2>
+      <div class="docs-grid">
+        <span class="doc-pill">SSS Number</span>
+        <span class="doc-pill">TIN Number</span>
+        <span class="doc-pill">PhilHealth ID</span>
+        <span class="doc-pill">Pag-IBIG MID</span>
+        <span class="doc-pill">NBI Clearance</span>
+      </div>
+    </section>
+
+    <footer class="cv-footer">
+      <div class="footer-info">
+        <p>References available upon request.</p>
+        <p style="margin-top: 2px;">statusph.github.io/joel-owen-obiasca</p>
+      </div>
+      <div class="qr-container">
+        <span style="font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px;">Scan for Online Portfolio</span>
+        <div class="qr-code">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://statusph.github.io/joel-owen-obiasca"
+            alt="QR Code">
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
